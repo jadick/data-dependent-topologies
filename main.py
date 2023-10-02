@@ -49,7 +49,7 @@ def dirichlet_experiments(y_train):
     dir_fig = plt.figure()
     dir_ax = dir_fig.add_subplot(111)
     for i in range(5):
-        dir_ax.plot(range(0,len(error_logs_Dir[i])), error_logs_Dir[0], label= f'alpha = {alpha_values[i]}')
+        dir_ax.plot(range(0,len(error_logs_Dir[i])), error_logs_Dir[i], label= f'alpha = {alpha_values[i]}')
     plt.ylabel('mean label skew')
     plt.xlabel('step k')
     dir_ax.legend()
