@@ -89,8 +89,7 @@ def correct_missing_idx(y_train, idx_map, cls_counts):
 
     return cls_counts_copy, indx_map_copy
 
-def partition_data_dirichlet(datadir, n_nodes, alpha):
-    X_train, y_train = load_cifar_10_train(datadir)
+def partition_data_dirichlet(n_nodes, alpha, y_train):
     n_train = y_train.shape[0]
     n_cls = 10
 
@@ -101,7 +100,7 @@ def partition_data_dirichlet(datadir, n_nodes, alpha):
     cls_amount = [len(idx_list[i]) for i in range(n_cls)]
     net_dataidx_map= {j: [] for j in range(n_nodes)}
 
-    while np.sum(clnt_data_list) != 600:
+    while np.sum(clnt_data_list) != 1000:
         while True:
             rand_node = np.random.randint(n_nodes) # select a random node
             if clnt_data_list[rand_node] <= 0:
@@ -119,7 +118,7 @@ def partition_data_dirichlet(datadir, n_nodes, alpha):
             selected_data_idx = idx_list[class_sample].pop(rand_class_idx)
             net_dataidx_map[rand_node].append(selected_data_idx)
 
-            print(np.sum(cls_amount), np.sum(clnt_data_list))
+            #print(np.sum(cls_amount), np.sum(clnt_data_list))
             break
 
     traindata_cls_counts = record_net_data_stats(y_train, net_dataidx_map)
