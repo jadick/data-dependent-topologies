@@ -18,13 +18,16 @@ def n_cls_experiments(y_train):
     for random_cluster in random_10__N_cls:
         topology, error_log = greedy_swap(random_cluster, 100)
         opt_topologies_N_cls.append(topology)
-        error_logs_N_cls.append(error_log)
+        error_logs_N_cls.append(error_log
+                )
+    n_cls_fig = plt.figure()
+    n_cls_ax = n_cls_fig.add_subplot(111)
     for i in range(4):
-        plt.plot(range(0,len(error_logs_N_cls[i])), error_logs_N_cls[i], label = f'n_class = {i+1}')
+        n_cls_ax.plot(range(0,len(error_logs_N_cls[i])), error_logs_N_cls[i], label = f'n_class = {i+1}')
     plt.ylabel('mean label skew')
     plt.xlabel('step k')
-    plt.legend()
-    plt.savefig('./results/n_cls.pdf')
+    n_cls_ax.legend()
+    n_cls_fig.savefig('./results/n_cls.pdf')
 
 def dirichlet_experiments(y_train):
     alpha_values = [0.1, 0.3, 0.5, 0.7, 0.9]
@@ -42,12 +45,15 @@ def dirichlet_experiments(y_train):
         topology, error_log = greedy_swap(random_cluster, 100)
         opt_topologies_Dir.append(topology)
         error_logs_Dir.append(error_log)
+     
+    dir_fig = plt.figure()
+    dir_ax = dir_fig.add_subplot(111)
     for i in range(5):
-        plt.plot(range(0,len(error_logs_Dir[i])), error_logs_Dir[0], label= f'alpha = {alpha_values[i]}')
+        dir_ax.plot(range(0,len(error_logs_Dir[i])), error_logs_Dir[0], label= f'alpha = {alpha_values[i]}')
     plt.ylabel('mean label skew')
     plt.xlabel('step k')
-    plt.legend()
-    plt.savefig('./results/dirichlet.pdf')
+    dir_ax.legend()
+    dir_fig.savefig('./results/dirichlet.pdf')
 
 
 cifar10_x_train, cifar10_y_train = load_cifar_10_train()

@@ -55,7 +55,7 @@ def greedy_swap(clusters, max_steps):
                     swaps_skews.append(skew_)
 
         if len(swaps) > 0:
-            print('swaped')
+            #print('swaped')
             min_skew = min(swaps_skews)
             chosen_swap = swaps[np.where(swaps_skews == min_skew)[0][0]]
             temp_i = topology[C1][chosen_swap[0]]
@@ -64,6 +64,6 @@ def greedy_swap(clusters, max_steps):
 
         topology_skew = mean_topology_skew(topology)
         error_log.append(topology_skew)
-        print(k, topology_skew)
+        #print(k, topology_skew)
 
     return topology, error_log
