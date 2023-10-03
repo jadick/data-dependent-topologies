@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import argparse
 from datasets import load_cifar_10_train
 from non_iid_distributions import generate_random_clusters, partition_n_cls, partition_data_dirichlet
 from greedy_swap import mean_topology_skew, greedy_swap
@@ -27,7 +28,7 @@ def n_cls_experiments(y_train):
     plt.ylabel('mean label skew')
     plt.xlabel('step k')
     n_cls_ax.legend()
-    n_cls_fig.savefig('./results/n_cls.pdf')
+    n_cls_fig.savefig('./results/n_cls.png')
 
 def dirichlet_experiments(y_train):
     alpha_values = [0.1, 0.3, 0.5, 0.7, 0.9]
@@ -53,9 +54,13 @@ def dirichlet_experiments(y_train):
     plt.ylabel('mean label skew')
     plt.xlabel('step k')
     dir_ax.legend()
-    dir_fig.savefig('./results/dirichlet.pdf')
+    dir_fig.savefig('./results/dirichlet.png')
 
+parser = argparse.ArgumentParser(description= "Run data-dependent topology experiments",
+                                 formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser.add_argument("-p", "--path", default =  "/scratch/ssd004/datasets/cifar10", help= "path to cifar-10 dataset")
+args = parser.parse_args()
 
-cifar10_x_train, cifar10_y_train = load_cifar_10_train()
+cifar10_x_train, cifar10_y_train = load_cifar_10_train(args.path)
 n_cls_experiments(cifar10_y_train)
 dirichlet_experiments(cifar10_y_train)
