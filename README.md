@@ -1,7 +1,7 @@
 Data-dependent Topologies for Personalized Decentralized Gradient Descent
 
 Script usage:
-python3 main.py -p "path/to/dataset"
+`python3 main.py -p "path/to/dataset"`
 
 Label Skew Optimization:
 
