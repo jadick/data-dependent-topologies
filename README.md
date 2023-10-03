@@ -1,14 +1,15 @@
-Data-dependent Topologies for Personalized Decentralized Gradient Descent
+# Data-dependent Topologies for Personalized Decentralized Gradient Descent
 
-Script usage:
+## Script usage:
+
 `python3 main.py -p "path/to/dataset"`
 
-Label Skew Optimization:
+## Label Skew Optimization:
 
-Dirichlet Partitioning:
+# Dirichlet Partitioning:
 
 ![Dirichlet](/results/dirichlet.png "Dirichlet")
 
-Pathological Partitioning:
+# Pathological Partitioning:
 
 ![Pathological](/results/n_cls.png "Dirichlet")
